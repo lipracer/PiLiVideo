@@ -1,0 +1,51 @@
+﻿  DecodeVideo.cpp
+c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavutil\rational.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(51): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(53): warning C4996: 'AVStream::codec': 被声明为已否决
+  c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavformat\avformat.h(878): note: 参见“AVStream::codec”的声明
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(66): warning C4996: 'AVStream::codec': 被声明为已否决
+  c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavformat\avformat.h(878): note: 参见“AVStream::codec”的声明
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(30): warning C4996: 'av_register_all': 被声明为已否决
+  c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavformat\avformat.h(2043): note: 参见“av_register_all”的声明
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(92): warning C4996: 'avpicture_get_size': 被声明为已否决
+  c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavcodec\avcodec.h(5449): note: 参见“avpicture_get_size”的声明
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(96): warning C4996: 'avpicture_fill': 被声明为已否决
+  c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavcodec\avcodec.h(5434): note: 参见“avpicture_fill”的声明
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(104): warning C4996: 'avcodec_decode_video2': 被声明为已否决
+  c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavcodec\avcodec.h(4770): note: 参见“avcodec_decode_video2”的声明
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(127): warning C4996: 'av_free_packet': 被声明为已否决
+  c:\users\lerlove\desktop\pilivideo\ffmpeg\include\libavcodec\avcodec.h(4415): note: 参见“av_free_packet”的声明
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(18): warning C4101: “i”: 未引用的局部变量
+  LLWindow.cpp
+  Player.cpp
+  正在生成代码...
+c:\users\lerlove\desktop\pilivideo\src\decodevideo.cpp(135): warning C4715: “decode_video”: 不是所有的控件路径都返回值
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _av_malloc，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _av_free，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _av_frame_alloc，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avcodec_open2，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avcodec_close，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _av_free_packet，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avcodec_find_decoder，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avcodec_decode_video2，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avpicture_fill，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avpicture_get_size，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _av_register_all，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avformat_network_init，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avformat_alloc_context，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avformat_open_input，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avformat_find_stream_info，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _av_read_frame，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _avformat_close_input，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _av_dump_format，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _sws_scale，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+DecodeVideo.obj : error LNK2019: 无法解析的外部符号 _sws_getCachedContext，该符号在函数 "int __cdecl decode_video(void)" (?decode_video@@YAHXZ) 中被引用
+..\..\..\..\ffmpeg\lib\avcodec.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+..\..\..\..\ffmpeg\lib\avdevice.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+..\..\..\..\ffmpeg\lib\avfilter.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+..\..\..\..\ffmpeg\lib\avformat.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+..\..\..\..\ffmpeg\lib\avutil.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+..\..\..\..\ffmpeg\lib\postproc.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+..\..\..\..\ffmpeg\lib\swresample.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+..\..\..\..\ffmpeg\lib\swscale.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+C:\Users\Lerlove\Desktop\PiLiVideo\project\win\Player\Debug\Player.exe : fatal error LNK1120: 20 个无法解析的外部命令
