@@ -79,7 +79,7 @@ void LLWindow::wait_times(long long int duration)
         duration_ = (chrono::duration_cast<chrono::milliseconds>(cur_point - m_video_start_tp)).count();
         
         cout << "My:" << duration_ << endl;
-        this_thread::sleep_for(chrono::milliseconds(1));
+        //this_thread::sleep_for(chrono::milliseconds(1));
         
     } while (duration_ < duration);
     cout << "start play" << endl;

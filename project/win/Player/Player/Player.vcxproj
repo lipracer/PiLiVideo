@@ -102,17 +102,22 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\..\ffmpeg\include;$(SolutionDir)..\..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderOutputFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\SDL\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -168,12 +173,13 @@
     <Library Include="..\..\..\..\ffmpeg\lib\postproc.lib" />
     <Library Include="..\..\..\..\ffmpeg\lib\swresample.lib" />
     <Library Include="..\..\..\..\ffmpeg\lib\swscale.lib" />
-    <Library Include="..\..\..\..\SDL\lib\x86\SDL2.lib" />
-    <Library Include="..\..\..\..\SDL\lib\x86\SDL2main.lib" />
-    <Library Include="..\..\..\..\SDL\lib\x86\SDL2test.lib" />
+    <Library Include="..\..\..\..\SDL\lib\x64\SDL2.lib" />
+    <Library Include="..\..\..\..\SDL\lib\x64\SDL2main.lib" />
+    <Library Include="..\..\..\..\SDL\lib\x64\SDL2test.lib" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\LLQueue.hpp" />
+    <ClInclude Include="..\..\..\..\src\LLWindow.h" />
     <ClInclude Include="..\..\..\..\src\VideoMgr.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

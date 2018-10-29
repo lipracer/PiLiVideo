@@ -26,15 +26,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\SDL\lib\x86\SDL2main.lib">
-      <Filter>资源文件</Filter>
-    </Library>
-    <Library Include="..\..\..\..\SDL\lib\x86\SDL2test.lib">
-      <Filter>资源文件</Filter>
-    </Library>
-    <Library Include="..\..\..\..\SDL\lib\x86\SDL2.lib">
-      <Filter>资源文件</Filter>
-    </Library>
     <Library Include="..\..\..\..\ffmpeg\lib\avcodec.lib">
       <Filter>资源文件</Filter>
     </Library>
@@ -59,12 +50,24 @@
     <Library Include="..\..\..\..\ffmpeg\lib\swscale.lib">
       <Filter>资源文件</Filter>
     </Library>
+    <Library Include="..\..\..\..\SDL\lib\x64\SDL2.lib">
+      <Filter>资源文件</Filter>
+    </Library>
+    <Library Include="..\..\..\..\SDL\lib\x64\SDL2main.lib">
+      <Filter>资源文件</Filter>
+    </Library>
+    <Library Include="..\..\..\..\SDL\lib\x64\SDL2test.lib">
+      <Filter>资源文件</Filter>
+    </Library>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\src\VideoMgr.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\LLQueue.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\LLWindow.h">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
