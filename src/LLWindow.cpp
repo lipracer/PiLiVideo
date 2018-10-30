@@ -31,7 +31,7 @@ int LLWindow::init_window()
 	bool quit = false;
 	while (quit == false)
 	{
-		SDL_WaitEvent(&event);
+		//SDL_WaitEvent(&event);
 		while (SDL_PollEvent(&event))
 		{
 			switch (event.type)

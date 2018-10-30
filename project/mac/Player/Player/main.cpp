@@ -10,7 +10,9 @@
 #include <thread>
 #include <chrono>
 #include "src/LLWindow.h"
-#include "src/DecodeVideo.h"
+#include "src/LLDecodeVideo.h"
+#include "src/LLTimer.hpp"
+#include "src/LLVideoMgr.hpp"
 
 using namespace std;
 
@@ -19,18 +21,23 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     
-    FormatCtx fmt_ctx(SRC_FILE);
+    LLFormatCtx fmt_ctx(SRC_FILE);
     fmt_ctx.init_info();
     
     LLWindow window(fmt_ctx.width(), fmt_ctx.height());
     
-    
-    DecodeVideo dv(fmt_ctx);
+    LLDecodeVideo dv(fmt_ctx);
     thread th([&window, &dv](){
-        this_thread::sleep_for(chrono::milliseconds(2000));
         dv.decode_video(&window);
     });
     th.detach();
+    
+    LLTimer::create_timer(chrono::milliseconds(100), [&window](){
+        
+        VideoInfo *info;
+        LLVideoMgr::get_instance().m_video_queue.pop_front(info);
+        window.test(info->pixels);
+    });
     
     window.init_window();
     return 0;

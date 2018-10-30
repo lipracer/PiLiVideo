@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3338B20E218803B500432B20 /* LLDecodeVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3338B20D218803B400432B20 /* LLDecodeVideo.cpp */; };
 		33B71CAC2186D683000D725F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B71CAB2186D683000D725F /* main.cpp */; };
 		33B71CB82186DA7D000D725F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B71CB72186DA7D000D725F /* SDL2.framework */; };
 		33B71CBE2186DADD000D725F /* LLWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B71CBC2186DADD000D725F /* LLWindow.cpp */; };
-		33B71CCE2186E322000D725F /* DecodeVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33B71CCD2186E322000D725F /* DecodeVideo.cpp */; };
 		33B71CEA21870B6B000D725F /* libavresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B71CE121870B6B000D725F /* libavresample.a */; };
 		33B71CEB21870B6B000D725F /* libavfilter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B71CE221870B6B000D725F /* libavfilter.a */; };
 		33B71CEC21870B6B000D725F /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33B71CE321870B6B000D725F /* libswresample.a */; };
@@ -35,13 +35,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3338B20A2188036B00432B20 /* LLTimer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = LLTimer.hpp; path = ../../../../src/LLTimer.hpp; sourceTree = "<group>"; };
+		3338B20D218803B400432B20 /* LLDecodeVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LLDecodeVideo.cpp; path = ../../../../src/LLDecodeVideo.cpp; sourceTree = "<group>"; };
+		3338B20F218803D100432B20 /* LLVideoMgr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = LLVideoMgr.hpp; path = ../../../../src/LLVideoMgr.hpp; sourceTree = "<group>"; };
 		33B71CA82186D683000D725F /* Player */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Player; sourceTree = BUILT_PRODUCTS_DIR; };
 		33B71CAB2186D683000D725F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		33B71CB72186DA7D000D725F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		33B71CB92186DADD000D725F /* VideoMgr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VideoMgr.hpp; path = ../../../../src/VideoMgr.hpp; sourceTree = "<group>"; };
 		33B71CBB2186DADD000D725F /* LLQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LLQueue.hpp; path = ../../../../src/LLQueue.hpp; sourceTree = "<group>"; };
 		33B71CBC2186DADD000D725F /* LLWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LLWindow.cpp; path = ../../../../src/LLWindow.cpp; sourceTree = "<group>"; };
-		33B71CCD2186E322000D725F /* DecodeVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DecodeVideo.cpp; path = ../../../../src/DecodeVideo.cpp; sourceTree = "<group>"; };
 		33B71CE121870B6B000D725F /* libavresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavresample.a; path = ../../../../../../../../usr/local/Cellar/ffmpeg/4.0.2_1/lib/libavresample.a; sourceTree = "<group>"; };
 		33B71CE221870B6B000D725F /* libavfilter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavfilter.a; path = ../../../../../../../../usr/local/Cellar/ffmpeg/4.0.2_1/lib/libavfilter.a; sourceTree = "<group>"; };
 		33B71CE321870B6B000D725F /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = ../../../../../../../../usr/local/Cellar/ffmpeg/4.0.2_1/lib/libswresample.a; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		33B71CE721870B6B000D725F /* libavdevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavdevice.a; path = ../../../../../../../../usr/local/Cellar/ffmpeg/4.0.2_1/lib/libavdevice.a; sourceTree = "<group>"; };
 		33B71CE821870B6B000D725F /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../../../../../../../../usr/local/Cellar/ffmpeg/4.0.2_1/lib/libavcodec.a; sourceTree = "<group>"; };
 		33B71CE921870B6B000D725F /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = ../../../../../../../../usr/local/Cellar/ffmpeg/4.0.2_1/lib/libavutil.a; sourceTree = "<group>"; };
-		33BDD6B92187233E005DB5D5 /* DecodeVideo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DecodeVideo.h; path = ../../../../src/DecodeVideo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,12 +95,12 @@
 		33B71CAA2186D683000D725F /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				33BDD6B92187233E005DB5D5 /* DecodeVideo.h */,
 				33B71CAB2186D683000D725F /* main.cpp */,
-				33B71CCD2186E322000D725F /* DecodeVideo.cpp */,
 				33B71CBB2186DADD000D725F /* LLQueue.hpp */,
 				33B71CBC2186DADD000D725F /* LLWindow.cpp */,
-				33B71CB92186DADD000D725F /* VideoMgr.hpp */,
+				3338B20A2188036B00432B20 /* LLTimer.hpp */,
+				3338B20D218803B400432B20 /* LLDecodeVideo.cpp */,
+				3338B20F218803D100432B20 /* LLVideoMgr.hpp */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -179,8 +179,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B71CAC2186D683000D725F /* main.cpp in Sources */,
+				3338B20E218803B500432B20 /* LLDecodeVideo.cpp in Sources */,
 				33B71CBE2186DADD000D725F /* LLWindow.cpp in Sources */,
-				33B71CCE2186E322000D725F /* DecodeVideo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

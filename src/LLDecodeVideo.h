@@ -12,15 +12,15 @@ extern "C"
 #include "LLWindow.h"
 using namespace std;
 
-class FormatCtx
+class LLFormatCtx
 {
 public:
-    FormatCtx(string filename): m_video_strem(-1)
+    LLFormatCtx(string filename): m_video_strem(-1)
     {
         m_filename = filename;
         
     }
-    ~FormatCtx()
+    ~LLFormatCtx()
     {
         avcodec_close(m_pcodec_ctx);
         avformat_close_input(&m_pformat_ctx);
@@ -100,17 +100,17 @@ private:
 
 };
 
-class DecodeVideo
+class LLDecodeVideo
 {
 public:
-    DecodeVideo(FormatCtx& fmt_ctx);
-    ~DecodeVideo();
+    LLDecodeVideo(LLFormatCtx& fmt_ctx);
+    ~LLDecodeVideo();
     int decode_video(LLWindow* window);
 private:
     void find_stream_index();
 public:
 private:
-    FormatCtx& m_fmt_ctx;
+    LLFormatCtx& m_fmt_ctx;
 };
 
 #endif

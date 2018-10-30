@@ -3,16 +3,16 @@
 
 #include "src/LLQueue.hpp"
 
-class VideoMgr 
+class LLVideoMgr
 {
 public:
-	static VideoMgr& get_instance()
+	static LLVideoMgr& get_instance()
 	{
-		static VideoMgr mgr;
+		static LLVideoMgr mgr;
 		return mgr;
 	}
-private:
-	LLQueue<VideoInfo> m_video_queue;
+public:
+	LLQueue<VideoInfo*> m_video_queue;
 };
 
 #endif
