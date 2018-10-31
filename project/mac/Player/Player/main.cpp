@@ -14,6 +14,7 @@
 #include "src/LLTimer.hpp"
 #include "src/LLVideoMgr.hpp"
 
+
 using namespace std;
 
 #define SRC_FILE "../wangzhe.mp4"
@@ -32,11 +33,12 @@ int main(int argc, char* argv[])
     });
     th.detach();
     
-    LLTimer::create_timer(chrono::milliseconds(100), [&window](){
+    LLTimer::create_timer(chrono::milliseconds((long long)(512*(fmt_ctx.m_pstream->time_base.num/(double)fmt_ctx.m_pstream->time_base.den) * 1000)), [&window](){
         
         VideoInfo *info;
         LLVideoMgr::get_instance().m_video_queue.pop_front(info);
         window.test(info->pixels);
+        delete info;
     });
     
     window.init_window();

@@ -25,22 +25,25 @@ struct VideoInfo
         pixels = new char [data_len];
         memcpy(pixels, pixels_, data_len);
     }
+    ~VideoInfo()
+    {
+        delete pixels;
+    }
 };
 
 template <typename T>
 class LLQueue 
 {
-	constexpr static int Max_Size = 10;
+	constexpr static int Max_Size = 3;
 public:
 	void push_back(T t)
 	{
 		unique_lock<mutex> ulock(m_mtx);
         
-        cout << "wait...\n";
         m_cdv.wait(ulock, [this]()->bool{return !(Max_Size == m_list.size());});
 
 		m_list.push_back(t);
-
+        cout << "push coutn:" << m_list.size() << endl;
 		if(1 == m_list.size())
 		{
 			m_cdv.notify_one();
@@ -55,8 +58,8 @@ public:
 
 		auto it = m_list.begin();
         t = *it;
-		m_list.pop_back();
-		
+		m_list.pop_front();
+		cout << "pop coutn:" << m_list.size() << endl;
 
 		if(Max_Size-1 == m_list.size())
 		{

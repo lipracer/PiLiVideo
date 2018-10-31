@@ -57,7 +57,7 @@ int LLDecodeVideo::decode_video(LLWindow* window)
                 sws_scale(img_convert_ctx, pFrame->data, pFrame->linesize, 0, m_fmt_ctx.height(),
                           pFrameRGB->data, pFrameRGB->linesize);
                 
-//                window->wait_times(pFrame->pts * av_q2d(m_fmt_ctx.m_pstream->time_base) * 1000);
+                //window->wait_times(pFrame->pts * av_q2d(m_fmt_ctx.m_pstream->time_base) * 1000);
 //                window->test((char*)pFrameRGB->data[0]);
                 VideoInfo *info = new VideoInfo(m_fmt_ctx.width(), m_fmt_ctx.height(), 24, (char*)pFrameRGB->data[0]);
                 LLVideoMgr::get_instance().m_video_queue.push_back(info);
