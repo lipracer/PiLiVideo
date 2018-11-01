@@ -16,11 +16,13 @@ struct VideoInfo
 	int height;
 	int depth;
 	char *pixels;
-    VideoInfo(int width_, int height_, int depth_, const char* pixels_)
+    long long int pts;
+    VideoInfo(int width_, int height_, int depth_, const char* pixels_, long long int pts_)
     {
         width = width_;
         height = height_;
         depth = depth_;
+        pts = pts_;
         int data_len = width_ * height_ * (depth_ >> 3);
         pixels = new char [data_len];
         memcpy(pixels, pixels_, data_len);
@@ -66,6 +68,15 @@ public:
 			m_cdv.notify_one();
 		}
 	}
+    
+    T front()
+    {
+        if(size())
+        {
+            return *m_list.begin();
+        }
+        return (T)nullptr;
+    }
 
 	size_t size() 
 	{

@@ -59,7 +59,7 @@ int LLDecodeVideo::decode_video(LLWindow* window)
                 
                 //window->wait_times(pFrame->pts * av_q2d(m_fmt_ctx.m_pstream->time_base) * 1000);
 //                window->test((char*)pFrameRGB->data[0]);
-                VideoInfo *info = new VideoInfo(m_fmt_ctx.width(), m_fmt_ctx.height(), 24, (char*)pFrameRGB->data[0]);
+                VideoInfo *info = new VideoInfo(m_fmt_ctx.width(), m_fmt_ctx.height(), 24, (char*)pFrameRGB->data[0], pFrame->pts * av_q2d(m_fmt_ctx.m_pstream->time_base) * 1000);
                 LLVideoMgr::get_instance().m_video_queue.push_back(info);
                 
             }
