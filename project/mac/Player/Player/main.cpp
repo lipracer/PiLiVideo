@@ -13,6 +13,7 @@
 #include "src/LLDecodeVideo.h"
 #include "src/LLTimer.hpp"
 #include "src/LLVideoMgr.hpp"
+#include "src/LLPool.hpp"
 
 
 using namespace std;
@@ -21,6 +22,9 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+    LLPool<10, 20> pool;
+    
+    return 0;
     
     LLFormatCtx fmt_ctx(SRC_FILE);
     fmt_ctx.init_info();
@@ -33,12 +37,20 @@ int main(int argc, char* argv[])
     });
     th.detach();
     
-    LLTimer::create_timer(chrono::milliseconds((long long)(512*(fmt_ctx.m_pstream->time_base.num/(double)fmt_ctx.m_pstream->time_base.den) * 1000)), [&window](){
+    LLTimer::create_timer(chrono::milliseconds((long long)(5)), [&window, &fmt_ctx](long long int tick)->void{
         
         VideoInfo *info;
-        LLVideoMgr::get_instance().m_video_queue.pop_front(info);
-        window.test(info->pixels);
-        delete info;
+        if((info = LLVideoMgr::get_instance().m_video_queue.front()))
+        {
+            if(tick > info->pts)
+            {
+                LLVideoMgr::get_instance().m_video_queue.pop_front(info);
+                window.test(info->pixels);
+                delete info;
+            }
+
+        }
+
     });
     
     window.init_window();

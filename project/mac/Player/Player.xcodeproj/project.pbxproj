@@ -35,6 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		331BE9D3218B4105004CCD1C /* LLPool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = LLPool.hpp; path = ../../../../src/LLPool.hpp; sourceTree = "<group>"; };
 		3338B20A2188036B00432B20 /* LLTimer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = LLTimer.hpp; path = ../../../../src/LLTimer.hpp; sourceTree = "<group>"; };
 		3338B20D218803B400432B20 /* LLDecodeVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LLDecodeVideo.cpp; path = ../../../../src/LLDecodeVideo.cpp; sourceTree = "<group>"; };
 		3338B20F218803D100432B20 /* LLVideoMgr.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = LLVideoMgr.hpp; path = ../../../../src/LLVideoMgr.hpp; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				33B71CAB2186D683000D725F /* main.cpp */,
+				331BE9D3218B4105004CCD1C /* LLPool.hpp */,
 				33B71CBB2186DADD000D725F /* LLQueue.hpp */,
 				33B71CBC2186DADD000D725F /* LLWindow.cpp */,
 				3338B20A2188036B00432B20 /* LLTimer.hpp */,
