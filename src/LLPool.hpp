@@ -22,7 +22,7 @@ public:
         while (_head->next)
         {
             BufBlock *tmp = _head->next;
-            delete tmp;
+            delete _head;
             _head = tmp;
         }
     }
@@ -35,12 +35,15 @@ public:
             init_block(new_block);
             _head->next = new_block;
         }
-        return _head->next;
+		BufBlock *tmp = _head;
+		_head = tmp->next;
+        return (char*)tmp;
     }
-    char* free_block(BufBlock *block)
+    void free_block(char *block)
     {
-        block->next = _head;
-        _head = block;
+		BufBlock* block_ = (BufBlock*)block;
+		block_->next = _head;
+        _head = block_;
     }
 private:
     void init_block(BufBlock* head)
@@ -48,8 +51,10 @@ private:
         for (int i = 0; i < count - 1; ++i)
         {
             head->next = head + 1;
+			head = head->next;
         }
-        (head + cout)->next = nullptr;
+        
+		head->next = nullptr;
     }
 public:
 private:
