@@ -18,7 +18,7 @@
 
 using namespace std;
 
-#define SRC_FILE "./wangzhe.mp4"
+#define SRC_FILE "../wangzhe.mp4"
 
 int main(int argc, char* argv[])
 {

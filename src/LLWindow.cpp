@@ -12,15 +12,16 @@ LLWindow::LLWindow(int width, int height) : m_width(width), m_height(height), m_
         m_renderer = SDL_CreateRenderer(m_hwnd, -1, 0);
         
         m_buf = new char[m_width * m_height * 3];
-        m_surface = SDL_CreateRGBSurfaceWithFormatFrom(m_buf,
-                                           m_width,
-                                           m_height,
-                                           24,
-                                           3 * m_width,
-                                        SDL_PIXELFORMAT_BGR24);
-        assert(m_surface);
+//        m_surface = SDL_CreateRGBSurfaceWithFormatFrom(m_buf,
+//                                           m_width,
+//                                           m_height,
+//                                           24,
+//                                           3 * m_width,
+//                                        SDL_PIXELFORMAT_BGR24);
+
         //m_surface = SDL_CreateRGBSurfaceFrom(m_buf, m_width, m_height, 24, 3 * m_width, 0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000);
-        m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
+        //m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
+        m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_BGR24, SDL_TEXTUREACCESS_TARGET, m_width, m_height);
     }
 }
 
@@ -36,6 +37,12 @@ int LLWindow::init_window()
 {
 	SDL_Event event;
 	bool quit = false;
+    SDL_Rect rect = {0, 0, m_width, m_height};
+    unsigned int format = 0;
+    int access = 0;
+    int w = 0;
+    int h = 0;
+    
 	while (quit == false)
 	{
 		//SDL_WaitEvent(&event);
@@ -44,12 +51,25 @@ int LLWindow::init_window()
 			switch (event.type)
 			{
 			case SDL_QUIT:
+                delete m_buf;
 				SDL_DestroyWindow(m_hwnd);
 				quit = true;
 				break;
 			case SDL_RENDER_TARGETS_RESET:
                 m_buf_mtx.lock();
-            
+
+                SDL_UpdateTexture(m_texture, &rect, m_buf, m_width * 3);
+                //SDL_QueryTexture(m_texture, &format, &access, &w, &h);
+//                m_surface = SDL_CreateRGBSurfaceFrom(m_buf, m_width, m_height, 24, 3 * m_width, 0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000);
+                //m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
+                //SDL_SetRenderTarget(m_renderer, m_texture);
+                //SDL_SetRenderDrawColor(m_renderer, 0x00, 0x00, 0x00, 0x00);
+                SDL_RenderClear(m_renderer);
+                //SDL_RenderDrawRect(m_renderer,&rect);
+                //SDL_SetRenderDrawColor(m_renderer, 0xFF, 0x00, 0x00, 0x00);
+                //SDL_RenderFillRect(m_renderer, &rect);
+                //SDL_SetRenderTarget(m_renderer, NULL);
+                SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
                 SDL_RenderPresent(m_renderer);
 				cout << "SDL_USEREVENT" << endl;
                 m_buf_mtx.unlock();
@@ -66,10 +86,8 @@ int LLWindow::test(char *data)
 {
 
     m_buf_mtx.lock();
-    //memcpy(m_buf, data, m_width * m_height * 3);
-    SDL_UpdateTexture(m_texture, nullptr, data, m_width * 3);
+    memcpy(m_buf, data, m_width * m_height * 3);
 
-    SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
     m_buf_mtx.unlock();
     SDL_Event event;
     event.type = SDL_RENDER_TARGETS_RESET;
