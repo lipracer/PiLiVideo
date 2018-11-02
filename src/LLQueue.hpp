@@ -7,11 +7,13 @@
 #include <list>
 #include <mutex>
 #include <condition_variable>
+#include "src/LLPool.hpp"
 
 using namespace std;
 
 struct VideoInfo 
 {
+	static LLPool<3, 1700*760*3> pool;
 	int width;
 	int height;
 	int depth;
@@ -24,14 +26,16 @@ struct VideoInfo
         depth = depth_;
         pts = pts_;
         int data_len = width_ * height_ * (depth_ >> 3);
-        pixels = new char [data_len];
+        //pixels = pixels_;//new char [data_len];
+        pixels = VideoInfo::pool.get_block();
         memcpy(pixels, pixels_, data_len);
     }
     ~VideoInfo()
     {
-        delete pixels;
+        VideoInfo::pool.free_block((char*)pixels);
     }
 };
+
 
 template <typename T>
 class LLQueue 

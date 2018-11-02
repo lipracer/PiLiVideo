@@ -6,6 +6,8 @@
 #include "src/LLVideoMgr.hpp"
 using namespace std;
 
+LLPool<3, 1700*760*3> VideoInfo::pool;
+
 LLDecodeVideo::LLDecodeVideo(LLFormatCtx& fmt_ctx) : m_fmt_ctx(fmt_ctx)
 {
     
@@ -61,6 +63,7 @@ int LLDecodeVideo::decode_video(LLWindow* window)
 //                window->test((char*)pFrameRGB->data[0]);
                 VideoInfo *info = new VideoInfo(m_fmt_ctx.width(), m_fmt_ctx.height(), 24, (char*)pFrameRGB->data[0], pFrame->pts * av_q2d(m_fmt_ctx.m_pstream->time_base) * 1000);
                 LLVideoMgr::get_instance().m_video_queue.push_back(info);
+                sws_freeContext(img_convert_ctx);
                 
             }
         }

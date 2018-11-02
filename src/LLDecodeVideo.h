@@ -10,6 +10,7 @@ extern "C"
 
 #include <string>
 #include "LLWindow.h"
+#include "LLPool.hpp"
 using namespace std;
 
 class LLFormatCtx

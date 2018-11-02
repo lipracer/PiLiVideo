@@ -18,13 +18,10 @@
 
 using namespace std;
 
-#define SRC_FILE "../wangzhe.mp4"
+#define SRC_FILE "./wangzhe.mp4"
 
 int main(int argc, char* argv[])
 {
-    LLPool<10, 20> pool;
-    
-    return 0;
     
     LLFormatCtx fmt_ctx(SRC_FILE);
     fmt_ctx.init_info();

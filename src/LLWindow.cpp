@@ -12,6 +12,15 @@ LLWindow::LLWindow(int width, int height) : m_width(width), m_height(height), m_
         m_renderer = SDL_CreateRenderer(m_hwnd, -1, 0);
         
         m_buf = new char[m_width * m_height * 3];
+        m_surface = SDL_CreateRGBSurfaceWithFormatFrom(m_buf,
+                                           m_width,
+                                           m_height,
+                                           24,
+                                           3 * m_width,
+                                        SDL_PIXELFORMAT_BGR24);
+        assert(m_surface);
+        //m_surface = SDL_CreateRGBSurfaceFrom(m_buf, m_width, m_height, 24, 3 * m_width, 0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000);
+        m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
     }
 }
 
@@ -57,9 +66,9 @@ int LLWindow::test(char *data)
 {
 
     m_buf_mtx.lock();
-    memcpy(m_buf, data, m_width * m_height * 3);
-    m_surface = SDL_CreateRGBSurfaceFrom(m_buf, m_width, m_height, 24, 3 * m_width, 0x00ff0000, 0x0000ff00, 0x000000ff, 0x00000000);
-    m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
+    //memcpy(m_buf, data, m_width * m_height * 3);
+    SDL_UpdateTexture(m_texture, nullptr, data, m_width * 3);
+
     SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
     m_buf_mtx.unlock();
     SDL_Event event;

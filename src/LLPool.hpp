@@ -1,7 +1,10 @@
 #ifndef _LLPOOL_H_
 #define _LLPOOL_H_
 
+#include <list>
+#include <mutex>
 
+using namespace std;
 template <int count, int size>
 class LLPool
 {
@@ -14,26 +17,29 @@ public:
     LLPool()
     {
         _head = (BufBlock*)new char[sizeof(BufBlock) * count];
+        m_buf_list.push_back(_head);
         init_block(_head);
     }
     
     ~LLPool()
     {
-        while (_head->next)
+        lock_guard<mutex> _(m_mtx);
+        for (auto it : m_buf_list)
         {
-            BufBlock *tmp = _head->next;
-            delete _head;
-            _head = tmp;
+            delete it;
         }
     }
     
     char* get_block()
     {
-        if(nullptr == _head->next)
+        lock_guard<mutex> _(m_mtx);
+        if(nullptr == _head)
         {
+            printf("WARN new buf!!!!!!!!!!!!!!!!!!\n");
             BufBlock *new_block = (BufBlock*)new char[sizeof(BufBlock) * count];
+            m_buf_list.push_back(new_block);
             init_block(new_block);
-            _head->next = new_block;
+            _head = new_block;
         }
 		BufBlock *tmp = _head;
 		_head = tmp->next;
@@ -41,6 +47,7 @@ public:
     }
     void free_block(char *block)
     {
+        lock_guard<mutex> _(m_mtx);
 		BufBlock* block_ = (BufBlock*)block;
 		block_->next = _head;
         _head = block_;
@@ -51,19 +58,18 @@ private:
         for (int i = 0; i < count - 1; ++i)
         {
             head->next = head + 1;
+            printf("%d ", (long long)head->next - (long long)head);
 			head = head->next;
         }
         
 		head->next = nullptr;
     }
 public:
+
 private:
     BufBlock *_head;
-    BufBlock *_cur_head;
-    int _index;
-    //template <int size>
-
-    
+    std::list<BufBlock*> m_buf_list;    
+    mutex m_mtx;
 };
 
 
