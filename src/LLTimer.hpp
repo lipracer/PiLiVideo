@@ -19,16 +19,17 @@ public:
 		thread th([this](){
 
 			unique_lock<mutex> uq_mtx(m_mtx);
-			cout << "thread start!" << endl;
+			cout << "timer thread start!" << endl;
 			this->m_bstart = true;
 			this->m_cdl.notify_one();
 			uq_mtx.unlock();
             m_star_tp = chrono::steady_clock::now();
 			while (!this->m_bquit)
 			{
-                m_cur_tp = chrono::steady_clock::now();
+                m_cur_tp = chrono::steady_clock::now();				
                 this_thread::sleep_for(m_duration);
                 long long int tick = (chrono::duration_cast<chrono::milliseconds>(m_cur_tp - m_star_tp)).count();
+				cout << "current time point:" << tick << endl;
                 m_callback(tick);
 			}
 		});

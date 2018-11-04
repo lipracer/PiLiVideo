@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\LLDecodeAudio.cpp" />
     <ClCompile Include="..\..\..\..\src\LLDecodeVideo.cpp" />
     <ClCompile Include="..\..\..\..\src\LLWindow.cpp" />
     <ClCompile Include="Player.cpp" />

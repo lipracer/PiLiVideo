@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\..\..\src\LLDecodeVideo.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\LLDecodeAudio.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\ffmpeg\lib\avcodec.lib">

@@ -40,15 +40,15 @@ int LLDecodeVideo::decode_video(LLWindow* window)
     window->m_video_start_tp = chrono::steady_clock::now();
     while (av_read_frame(m_fmt_ctx.m_pformat_ctx, &packet) >= 0)
     {
-        if (m_fmt_ctx.m_video_strem == packet.stream_index)
+        if (m_fmt_ctx.m_video_strem_index == packet.stream_index)
         {
-            avcodec_decode_video2(m_fmt_ctx.m_pcodec_ctx, pFrame, &frameFinished, &packet);
+            avcodec_decode_video2(m_fmt_ctx.m_pvideo_codec_ctx, pFrame, &frameFinished, &packet);
             if (frameFinished)
             {
                 struct SwsContext *img_convert_ctx = NULL;
                 img_convert_ctx = sws_getCachedContext(img_convert_ctx,
                                                        m_fmt_ctx.width(), m_fmt_ctx.height(),
-                                                       m_fmt_ctx.m_pcodec_ctx->pix_fmt, m_fmt_ctx.width(), m_fmt_ctx.height(),
+                                                       m_fmt_ctx.m_pvideo_codec_ctx->pix_fmt, m_fmt_ctx.width(), m_fmt_ctx.height(),
                                                        AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL);
                 
                 if (!img_convert_ctx)
@@ -61,7 +61,7 @@ int LLDecodeVideo::decode_video(LLWindow* window)
                 
                 //window->wait_times(pFrame->pts * av_q2d(m_fmt_ctx.m_pstream->time_base) * 1000);
 //                window->test((char*)pFrameRGB->data[0]);
-                VideoInfo *info = new VideoInfo(m_fmt_ctx.width(), m_fmt_ctx.height(), 24, (char*)pFrameRGB->data[0], pFrame->pts * av_q2d(m_fmt_ctx.m_pstream->time_base) * 1000);
+                VideoInfo *info = new VideoInfo(m_fmt_ctx.width(), m_fmt_ctx.height(), 24, (char*)pFrameRGB->data[0], pFrame->pts * av_q2d(m_fmt_ctx.m_pvideo_stream->time_base) * 1000);
                 LLVideoMgr::get_instance().m_video_queue.push_back(info);
                 sws_freeContext(img_convert_ctx);
                 
