@@ -1,8 +1,11 @@
+#include <mutex>
 #include "LLDecodeAudio.h"
 extern "C" 
 {
 #include "ffmpeg/include/libswresample/swresample.h"
 }
+
+using namespace std;
 
 #define MAX_AUDIO_FRAME_SIZE 192000
 
@@ -10,8 +13,12 @@ static  Uint8  *audio_chunk;
 static  Uint32  audio_len;
 static  Uint8  *audio_pos;
 
-void  fill_audio(void *udata, Uint8 *stream, int len) {
+static mutex g_mtx;
+
+static void  fill_audio(void *udata, Uint8 *stream, int len) {
 	//SDL 2.0
+	//g_mtx.lock();
+	printf("fill_audio--------------------------\n");
 	SDL_memset(stream, 0, len);
 	if (audio_len == 0)
 		return;
@@ -21,6 +28,7 @@ void  fill_audio(void *udata, Uint8 *stream, int len) {
 	SDL_MixAudio(stream, audio_pos, len, SDL_MIX_MAXVOLUME);
 	audio_pos += len;
 	audio_len -= len;
+	//g_mtx.unlock();
 }
 
 LLDecodeAudio::LLDecodeAudio(LLFormatCtx& fmt_ctx) : m_fmt_ctx(fmt_ctx)
@@ -84,7 +92,8 @@ int LLDecodeAudio::decode_audio()
 	SDL_PauseAudio(0);
 
 	while (av_read_frame(m_fmt_ctx.m_pformat_ctx, packet) >= 0) {
-		if (packet->stream_index == m_fmt_ctx.m_audio_strem_index) {
+		if (packet->stream_index == m_fmt_ctx.m_audio_strem_index)
+		{
 			ret = avcodec_decode_audio4(m_fmt_ctx.m_paudio_codec_ctx, pFrame, &got_picture, packet);
 			if (ret < 0) {
 				printf("Error in decoding audio frame.\n");
@@ -97,7 +106,7 @@ int LLDecodeAudio::decode_audio()
 				index++;
 			}
 
-
+			g_mtx.lock();
 			while (audio_len > 0)//Wait until finish
 				SDL_Delay(1);
 
@@ -106,8 +115,8 @@ int LLDecodeAudio::decode_audio()
 			//Audio buffer length
 			audio_len = out_buffer_size;
 			audio_pos = audio_chunk;
-
-
+			g_mtx.unlock();
+			//return 0;
 		}
 		av_free_packet(packet);
 	}
@@ -116,4 +125,5 @@ int LLDecodeAudio::decode_audio()
 
 	SDL_CloseAudio();//Close SDL
 	//SDL_Quit();
+	return 0;
 }

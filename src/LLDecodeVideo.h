@@ -5,6 +5,7 @@ extern "C"
 {
 #include "ffmpeg/include/libavcodec/avcodec.h"
 #include "ffmpeg/include/libavformat/avformat.h"
+#include "ffmpeg/include/libswresample/swresample.h"
 #include "ffmpeg/include/libswscale/swscale.h"
 }
 
@@ -87,6 +88,14 @@ public:
     }
     int width(){return m_width;}
     int height(){return m_height;}
+	LLFormatCtx& operator()(LLFormatCtx& other)
+	{
+		if (&other != this) 
+		{
+
+		}
+		return *this;
+	}
 private:
 	int set_codec_ctx(AVMediaType type, AVCodecContext* &codec_ctx, AVCodec* &codec)
 	{
