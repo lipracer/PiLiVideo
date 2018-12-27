@@ -38,10 +38,6 @@ int LLWindow::init_window()
 	SDL_Event event;
 	bool quit = false;
     SDL_Rect rect = {0, 0, m_width, m_height};
-    unsigned int format = 0;
-    int access = 0;
-    int w = 0;
-    int h = 0;
     
 	while (quit == false)
 	{
@@ -51,7 +47,6 @@ int LLWindow::init_window()
 			switch (event.type)
 			{
 			case SDL_QUIT:
-                delete m_buf;
 				SDL_DestroyWindow(m_hwnd);
 				quit = true;
 				break;

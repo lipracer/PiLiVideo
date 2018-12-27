@@ -13,7 +13,7 @@ using namespace std;
 
 struct VideoInfo 
 {
-	static LLPool<3, 1700*760*3> pool;
+	static LLPool<3> pool;
 	int width;
 	int height;
 	int depth;
@@ -27,7 +27,7 @@ struct VideoInfo
         pts = pts_;
         int data_len = width_ * height_ * (depth_ >> 3);
         //pixels = pixels_;//new char [data_len];
-        pixels = VideoInfo::pool.get_block();
+        pixels = (char*)VideoInfo::pool.get_block();
         memcpy(pixels, pixels_, data_len);
     }
     ~VideoInfo()

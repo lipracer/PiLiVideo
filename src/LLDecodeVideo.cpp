@@ -12,7 +12,7 @@ static  Uint8  *audio_chunk;
 static  Uint32  audio_len;
 static  Uint8  *audio_pos;
 
-LLPool<3, 1700*760*3> VideoInfo::pool;
+LLPool<3> VideoInfo::pool(1700 * 960);
 
 static void  fill_audio(void *udata, Uint8 *stream, int len) {
 	//SDL 2.0
@@ -25,7 +25,7 @@ static void  fill_audio(void *udata, Uint8 *stream, int len) {
 	len = (len > audio_len ? audio_len : len);	/*  Mix  as  much  data  as  possible  */
 
 	SDL_MixAudio(stream, audio_pos, len, SDL_MIX_MAXVOLUME);
-	audio_pos += len;
+	//audio_pos += len;
 	audio_len -= len;
 	//g_mtx.unlock();
 }

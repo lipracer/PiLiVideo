@@ -21,8 +21,7 @@ using namespace std;
 #define SRC_FILE "../wangzhe.mp4"
 
 int main(int argc, char* argv[])
-{
-    
+{    
     LLFormatCtx fmt_ctx(SRC_FILE);
     fmt_ctx.init_info();
     
@@ -34,7 +33,7 @@ int main(int argc, char* argv[])
     });
     th.detach();
     
-    LLTimer::create_timer(chrono::milliseconds((long long)(5)), [&window, &fmt_ctx](long long int tick)->void{
+    LLTimer::create_timer(chrono::milliseconds(5ll), [&window, &fmt_ctx](long long int tick)->void{
         
         VideoInfo *info;
         if((info = LLVideoMgr::get_instance().m_video_queue.front()))
